@@ -41,4 +41,9 @@ Run `npm audit` regularly to check for vulnerabilities in dependencies.
 
 ## Reporting Security Issues
 
-If you discover a security vulnerability, please email the maintainer rather than opening a public issue.
+If you discover a security vulnerability, please report it privately using one of these methods:
+
+1. **GitHub Security Advisories** (Recommended): Go to the [Security tab](https://github.com/SQLtattoo/scriptScroller/security) and click "Report a vulnerability"
+2. **GitHub Issues**: Open an issue and mention `@SQLtattoo` - I'll get notified directly
+
+Please do **not** report security vulnerabilities through public GitHub issues without marking them as security advisories first.
