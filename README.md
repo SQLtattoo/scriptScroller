@@ -18,7 +18,7 @@ Perfect for video creators, presenters, and content makers who want to deliver n
 [Download](#-download) •
 [How to Use](#-how-to-use) •
 [Shortcuts](#️-keyboard-shortcuts) •
-[For Developers](#-quick-start-for-developers)
+[For Developers](#-for-developers)
 
 </div>
 
@@ -62,10 +62,6 @@ Simply download the installer for your platform and run it:
 
 ---
 
-### 👨‍💻 For Developers
-
-Want to contribute or run from source? See the development setup below.
-
 ## ✨ Features
 
 - **Frameless & Transparent** - Minimalist design that stays out of the way
@@ -78,6 +74,12 @@ Want to contribute or run from source? See the development setup below.
 - **Keyboard Shortcuts** - Full control without touching the mouse
 - **Customizable** - Adjust font size and scrolling speed on the fly
 - **Cross-Platform** - Works on Windows, macOS, and Linux
+
+---
+
+## 👨‍💻 For Developers
+
+Want to contribute or run from source? Follow the development setup below.
 
 ## 🚀 Quick Start (For Developers)
 
@@ -135,6 +137,25 @@ GitHub Actions will automatically build installers for all platforms and create 
 5. **Position** the window right below your webcam for natural eye contact
 6. **Resize** the window to make it narrow and tall for better camera alignment
 7. **Press Space** to start scrolling - it begins automatically!
+
+---
+
+## 📖 How to Use
+
+1. **Download and install** Script Scroller for your platform (see [Download](#-download) section above)
+2. **Launch** the app
+3. **Paste your script** in the text area on the setup screen
+4. **Adjust settings**:
+   - Use the **Speed** slider to set your preferred scrolling speed (or use arrow keys later)
+   - Use the **Font Size** slider to make text larger or smaller
+5. **Click "Start Scrolling"**
+6. **Position the window**:
+   - Resize it to be **narrow and tall** for less eye movement
+   - Place it **right below your webcam** so you naturally look at the camera
+7. **Press Space** to start scrolling - it begins automatically!
+8. **Control playback** with keyboard shortcuts (see below)
+
+💡 **Pro Tip**: Run through your script a few times to find your ideal speed before recording!
 
 ## ⌨️ Keyboard Shortcuts
 

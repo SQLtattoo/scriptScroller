@@ -2,14 +2,17 @@ module.exports = {
   packagerConfig: {
     asar: true,
     name: 'Script Scroller',
-    executableName: 'script-scroller'
+    executableName: 'script-scroller',
+    icon: './icon' // Forge will automatically append .ico, .icns, or .png
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        name: 'script_scroller'
+        name: 'script_scroller',
+        setupIcon: './icon.ico',
+        iconUrl: 'https://raw.githubusercontent.com/SQLtattoo/scriptScroller/main/icon.ico'
       }
     },
     {
