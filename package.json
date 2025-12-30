@@ -1,7 +1,7 @@
 {
   "name": "script-scroller",
   "productName": "Script Scroller",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Beautiful transparent teleprompter app for video creators",
   "main": "main.js",
   "scripts": {
