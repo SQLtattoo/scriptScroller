@@ -2,6 +2,29 @@
 
 A beautiful, transparent teleprompter app built with Electron. Perfect for video creators, presenters, and content makers who want to deliver natural-looking scripts on camera.
 
+## 📥 Download
+
+### 🎉 For End Users (Non-Developers)
+
+**No installation of Node.js or development tools required!**
+
+Simply download the installer for your platform and run it:
+
+👉 **[Download Script Scroller](https://github.com/SQLtattoo/scriptScroller/releases/latest)**
+
+**Available for all platforms:**
+- 🪟 **Windows**: `Script.Scroller-1.0.0.Setup.exe` - Double-click to install
+- 🍎 **macOS**: `Script.Scroller-darwin-x64-1.0.0.zip` - Extract and drag to Applications
+- 🐧 **Linux**: `.deb` (Debian/Ubuntu) or `.rpm` (Fedora/RHEL) - Install with your package manager
+
+**That's it!** No coding knowledge needed. Download, install, and start creating amazing videos with your teleprompter.
+
+---
+
+### 👨‍💻 For Developers
+
+Want to contribute or run from source? See the development setup below.
+
 ## ✨ Features
 
 - **Frameless & Transparent** - Minimalist design that stays out of the way
@@ -15,7 +38,7 @@ A beautiful, transparent teleprompter app built with Electron. Perfect for video
 - **Customizable** - Adjust font size and scrolling speed on the fly
 - **Cross-Platform** - Works on Windows, macOS, and Linux
 
-## 🚀 Quick Start
+## 🚀 Quick Start (For Developers)
 
 ### Prerequisites
 - [Node.js](https://nodejs.org) (v14 or higher)
@@ -32,13 +55,35 @@ npm install
 npm start
 ```
 
-### Build Standalone Executable
+### Build Installers
+
+Create platform-specific installers for distribution:
 
 ```powershell
-npm run build
+npm run make
 ```
 
-The portable executable will be created in the `dist` folder.
+This will create installers in the `out/make/` directory:
+- **Windows**: `.exe` installer (Squirrel)
+- **macOS**: `.zip` archive (requires building on macOS)
+- **Linux**: `.deb` and `.rpm` packages (requires building on Linux)
+
+**Note:** Due to platform limitations, each OS installer must be built on its native platform. For convenience, we use GitHub Actions to build all platforms automatically when you push a version tag.
+
+### Create a Release (Automated Build for All Platforms)
+
+To build installers for Windows, macOS, and Linux automatically:
+
+1. Update version in `package.json`
+2. Commit your changes
+3. Create and push a version tag:
+
+```powershell
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+GitHub Actions will automatically build installers for all platforms and create a release with downloadable assets.
 
 ## 📖 How to Use
 
