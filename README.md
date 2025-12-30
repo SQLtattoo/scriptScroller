@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -58,7 +58,12 @@ Simply download the installer for your platform and run it:
 
 **That's it!** No coding knowledge needed. Download, install, and start creating amazing videos with your teleprompter.
 
-> **Note for Windows:** The installer may look minimal/different - that's normal! Just follow the prompts to install.
+> **📝 Note for Windows Users:**
+> - The installer uses **Squirrel** (same technology as Slack, Discord, GitHub Desktop, and Microsoft Teams)
+> - It has a **minimal, fast installer** - don't be surprised if it looks different from traditional Windows installers!
+> - Installation is quick and automatic
+> - After installation, find "Script Scroller" in your Start Menu
+> - The app auto-updates seamlessly in the background
 
 ---
 

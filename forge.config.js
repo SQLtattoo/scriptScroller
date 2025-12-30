@@ -3,7 +3,8 @@ module.exports = {
     asar: true,
     name: 'Script Scroller',
     executableName: 'script-scroller',
-    icon: './icon' // Forge will automatically append .ico, .icns, or .png
+    icon: './icon', // Forge will automatically append .ico, .icns, or .png
+    appCopyright: 'Copyright © 2025 byScript Scroller'
   },
   rebuildConfig: {},
   makers: [
@@ -12,7 +13,10 @@ module.exports = {
       config: {
         name: 'script_scroller',
         setupIcon: './icon.ico',
-        iconUrl: 'https://raw.githubusercontent.com/SQLtattoo/scriptScroller/main/icon.ico'
+        iconUrl: 'https://raw.githubusercontent.com/SQLtattoo/scriptScroller/main/icon.ico',
+        loadingGif: undefined,
+        setupExe: 'Script.Scroller-Setup.exe',
+        noMsi: true
       }
     },
     {

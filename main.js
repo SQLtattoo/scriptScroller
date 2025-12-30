@@ -1,6 +1,53 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
+
+// Handle Windows Squirrel events manually for Start Menu shortcut
+if (process.platform === 'win32') {
+  const squirrelCommand = process.argv[1];
+  
+  if (squirrelCommand === '--squirrel-install' || squirrelCommand === '--squirrel-updated') {
+    // Create Start Menu shortcut
+    const updateDotExe = path.resolve(path.dirname(process.execPath), '..', 'update.exe');
+    const exeName = path.basename(process.execPath);
+    const startMenuDir = path.join(process.env.APPDATA, 'Microsoft', 'Windows', 'Start Menu', 'Programs');
+    const shortcutPath = path.join(startMenuDir, 'Script Scroller.lnk');
+    
+    shell.writeShortcutLink(shortcutPath, 'create', {
+      target: updateDotExe,
+      args: '--processStart "' + exeName + '"',
+      description: 'Beautiful transparent teleprompter for video creators',
+      icon: process.execPath,
+      iconIndex: 0,
+      appUserModelId: 'com.scriptscroller.app'
+    });
+    
+    app.quit();
+    return;
+  }
+  
+  if (squirrelCommand === '--squirrel-uninstall') {
+    // Remove Start Menu shortcut
+    const startMenuDir = path.join(process.env.APPDATA, 'Microsoft', 'Windows', 'Start Menu', 'Programs');
+    const shortcutPath = path.join(startMenuDir, 'Script Scroller.lnk');
+    
+    try {
+      if (fs.existsSync(shortcutPath)) {
+        fs.unlinkSync(shortcutPath);
+      }
+    } catch (err) {
+      console.error('Error removing shortcut:', err);
+    }
+    
+    app.quit();
+    return;
+  }
+  
+  if (squirrelCommand === '--squirrel-obsolete' || squirrelCommand === '--squirrel-firstrun') {
+    app.quit();
+    return;
+  }
+}
 
 let mainWindow;
 const stateFile = path.join(app.getPath('userData'), 'window-state.json');
