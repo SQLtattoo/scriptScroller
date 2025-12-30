@@ -21,7 +21,8 @@ module.exports = {
       config: {
         options: {
           maintainer: 'Script Scroller Team',
-          homepage: 'https://github.com/SQLtattoo/scriptScroller'
+          homepage: 'https://github.com/SQLtattoo/scriptScroller',
+          description: 'Beautiful transparent teleprompter for video creators'
         }
       }
     },
@@ -29,7 +30,8 @@ module.exports = {
       name: '@electron-forge/maker-rpm',
       config: {
         options: {
-          homepage: 'https://github.com/SQLtattoo/scriptScroller'
+          homepage: 'https://github.com/SQLtattoo/scriptScroller',
+          description: 'Beautiful transparent teleprompter for video creators'
         }
       }
     }

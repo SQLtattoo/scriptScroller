@@ -1,6 +1,41 @@
 # 📜 Script Scroller
 
-A beautiful, transparent teleprompter app built with Electron. Perfect for video creators, presenters, and content makers who want to deliver natural-looking scripts on camera.
+<div align="center">
+
+![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
+**A beautiful, transparent teleprompter app built with Electron**
+
+Perfect for video creators, presenters, and content makers who want to deliver natural-looking scripts on camera.
+
+[![Download for Windows](https://img.shields.io/badge/Download-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/SQLtattoo/scriptScroller/releases/latest)
+[![Download for macOS](https://img.shields.io/badge/Download-macOS-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/SQLtattoo/scriptScroller/releases/latest)
+[![Download for Linux](https://img.shields.io/badge/Download-Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://github.com/SQLtattoo/scriptScroller/releases/latest)
+
+[Features](#-features) •
+[Download](#-download) •
+[How to Use](#-how-to-use) •
+[Shortcuts](#️-keyboard-shortcuts) •
+[For Developers](#-quick-start-for-developers)
+
+</div>
+
+---
+
+## 🎯 About
+
+**Script Scroller** is a frameless, transparent teleprompter designed specifically for video creators who want to maintain natural eye contact with their camera while reading their scripts. Unlike traditional teleprompters, Script Scroller:
+
+- 💨 **Stays out of the way** - Transparent, frameless design that blends with your screen
+- 🎥 **Camera-friendly positioning** - Place it right below your webcam for natural eye line
+- ⚡ **Smooth scrolling** - Customizable speed with fine-grained control
+- 🎨 **Fully customizable** - Adjust font size and speed on the fly
+- 💾 **Auto-saves everything** - Your script, window position, and settings are remembered
+- 🌍 **Cross-platform** - Works on Windows, macOS, and Linux
+
+Whether you're a YouTuber, presenter, teacher, or content creator, Script Scroller helps you deliver confident, natural-looking videos without memorizing lengthy scripts.
 
 ## 📥 Download
 
@@ -10,14 +45,20 @@ A beautiful, transparent teleprompter app built with Electron. Perfect for video
 
 Simply download the installer for your platform and run it:
 
-👉 **[Download Script Scroller](https://github.com/SQLtattoo/scriptScroller/releases/latest)**
+<div align="center">
+
+### 👉 **[Download from Releases](https://github.com/SQLtattoo/scriptScroller/releases/latest)** 👈
+
+</div>
 
 **Available for all platforms:**
-- 🪟 **Windows**: `Script.Scroller-1.0.0.Setup.exe` - Double-click to install
-- 🍎 **macOS**: `Script.Scroller-darwin-x64-1.0.0.zip` - Extract and drag to Applications
+- 🪟 **Windows**: `Script.Scroller-X.X.X.Setup.exe` - Run the installer
+- 🍎 **macOS**: `script-scroller-darwin-x64-X.X.X.zip` - Extract and drag to Applications
 - 🐧 **Linux**: `.deb` (Debian/Ubuntu) or `.rpm` (Fedora/RHEL) - Install with your package manager
 
 **That's it!** No coding knowledge needed. Download, install, and start creating amazing videos with your teleprompter.
+
+> **Note for Windows:** The installer may look minimal/different - that's normal! Just follow the prompts to install.
 
 ---
 
