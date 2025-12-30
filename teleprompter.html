@@ -19,6 +19,25 @@
             -webkit-app-region: drag; /* Make window draggable */
         }
 
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.6);
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.8);
+        }
+
         button, input, textarea, #overlay-controls {
             -webkit-app-region: no-drag; /* Allow interaction with controls */
         }
@@ -27,11 +46,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 40px;
+            justify-content: flex-start;
+            height: 100vh;
+            padding: 40px 20px;
             background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             border-radius: 10px;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         /* Window control buttons */
@@ -325,6 +346,7 @@ Happy presenting! 🎬</textarea>
         <div class="shortcuts">
             <h3>⌨️ Keyboard Shortcuts</h3>
             <p><strong>Space</strong> - Play/Pause</p>
+            <p><strong>S</strong> - Slow down to stop (decelerate)</p>
             <p><strong>↑/↓</strong> - Adjust speed</p>
             <p><strong>R</strong> - Reset to beginning</p>
             <p><strong>F</strong> - Toggle fullscreen</p>
@@ -346,8 +368,6 @@ Happy presenting! 🎬</textarea>
             <button id="reset-btn">Reset</button>
             <button id="exit-btn">Exit</button>
         </div>
-        
-        <div class="footer">Made with ❤️</div>
     </div>
 
     <script>
@@ -371,6 +391,10 @@ Happy presenting! 🎬</textarea>
         let fontSize = 48;
         let currentPosition = 0;
         let animationId = null;
+        let isDecelerating = false;
+        let targetSpeed = 0;
+        let originalSpeed = 0;
+        const decelerationRate = 0.95; // Multiplier for smooth deceleration
 
         // Update speed display
         speedSlider.addEventListener('input', (e) => {
@@ -398,6 +422,12 @@ Happy presenting! 🎬</textarea>
             currentPosition = window.innerHeight * 0.5;
             scriptContainer.style.transform = `translateY(${currentPosition}px)`;
             
+            // Remove window size constraints for teleprompter
+            if (typeof require !== 'undefined') {
+                const { ipcRenderer } = require('electron');
+                ipcRenderer.send('remove-size-constraints');
+            }
+            
             // Auto-start scrolling
             scrolling = true;
             playPauseBtn.textContent = 'Pause';
@@ -410,11 +440,13 @@ Happy presenting! 🎬</textarea>
         function togglePlayPause() {
             scrolling = !scrolling;
             if (scrolling) {
+                isDecelerating = false; // Cancel deceleration when resuming
                 playPauseBtn.textContent = 'Pause';
                 status.textContent = 'Playing';
                 document.getElementById('overlay-controls').classList.add('hidden');
                 scroll();
             } else {
+                isDecelerating = false;
                 playPauseBtn.textContent = 'Play';
                 status.textContent = 'Paused';
                 document.getElementById('overlay-controls').classList.remove('hidden');
@@ -429,6 +461,7 @@ Happy presenting! 🎬</textarea>
         // Reset
         function resetScroll() {
             scrolling = false;
+            isDecelerating = false;
             playPauseBtn.textContent = 'Play';
             status.textContent = 'Paused';
             document.getElementById('overlay-controls').classList.remove('hidden');
@@ -449,6 +482,13 @@ Happy presenting! 🎬</textarea>
             }
             teleprompterScreen.classList.remove('active');
             setupScreen.classList.remove('hidden');
+            
+            // Restore window size constraints and resize to minimum for setup screen
+            if (typeof require !== 'undefined') {
+                const { ipcRenderer } = require('electron');
+                ipcRenderer.send('resize-to-minimum');
+            }
+            
             if (document.fullscreenElement) {
                 document.exitFullscreen();
             }
@@ -457,6 +497,22 @@ Happy presenting! 🎬</textarea>
         // Scroll animation
         function scroll() {
             if (!scrolling) return;
+            
+            // Handle deceleration
+            if (isDecelerating) {
+                scrollSpeed *= decelerationRate;
+                
+                // Stop when speed is very low
+                if (scrollSpeed < 0.1) {
+                    scrollSpeed = 0;
+                    isDecelerating = false;
+                    scrolling = false;
+                    playPauseBtn.textContent = 'Play';
+                    status.textContent = 'Stopped';
+                    document.getElementById('overlay-controls').classList.remove('hidden');
+                    return;
+                }
+            }
             
             currentPosition -= scrollSpeed * 0.5;
             scriptContainer.style.transform = `translateY(${currentPosition}px)`;
@@ -473,7 +529,31 @@ Happy presenting! 🎬</textarea>
             });
             
             document.getElementById('close-btn')?.addEventListener('click', () => {
+                // Save state before closing
+                const state = {
+                    script: scriptInput.value,
+                    scrollSpeed: scrollSpeed,
+                    fontSize: fontSize
+                };
+                ipcRenderer.send('save-state', state);
                 ipcRenderer.send('close-window');
+            });
+            
+            // Restore state on load (but always start on setup screen)
+            ipcRenderer.invoke('get-state').then(state => {
+                if (state) {
+                    if (state.script) scriptInput.value = state.script;
+                    if (state.scrollSpeed) {
+                        scrollSpeed = state.scrollSpeed;
+                        speedSlider.value = scrollSpeed;
+                        speedValue.textContent = scrollSpeed.toFixed(1);
+                    }
+                    if (state.fontSize) {
+                        fontSize = state.fontSize;
+                        fontSlider.value = fontSize;
+                        fontValue.textContent = fontSize + 'px';
+                    }
+                }
             });
         }
 
@@ -486,17 +566,38 @@ Happy presenting! 🎬</textarea>
                     e.preventDefault();
                     togglePlayPause();
                     break;
+                case 'KeyS':
+                    e.preventDefault();
+                    if (scrolling && !isDecelerating) {
+                        // Start deceleration
+                        isDecelerating = true;
+                        originalSpeed = scrollSpeed;
+                        status.textContent = 'Slowing down...';
+                    }
+                    break;
                 case 'ArrowUp':
                     e.preventDefault();
-                    scrollSpeed = Math.min(10, scrollSpeed + 0.5);
-                    speedValue.textContent = scrollSpeed;
+                    scrollSpeed = Math.min(10, scrollSpeed + 0.3);
+                    speedValue.textContent = scrollSpeed.toFixed(1);
                     speedSlider.value = scrollSpeed;
+                    // Cancel deceleration if speed is adjusted
+                    if (isDecelerating) {
+                        isDecelerating = false;
+                        status.textContent = 'Playing';
+                    }
                     break;
                 case 'ArrowDown':
                     e.preventDefault();
-                    scrollSpeed = Math.max(1, scrollSpeed - 0.5);
-                    speedValue.textContent = scrollSpeed;
-                    speedSlider.value = scrollSpeed;
+                    scrollSpeed = Math.max(0.1, scrollSpeed - 0.3);
+                    speedValue.textContent = scrollSpeed.toFixed(1);
+                    if (scrollSpeed >= 1) {
+                        speedSlider.value = scrollSpeed;
+                    }
+                    // Cancel deceleration if speed is adjusted
+                    if (isDecelerating) {
+                        isDecelerating = false;
+                        status.textContent = 'Playing';
+                    }
                     break;
                 case 'KeyR':
                     e.preventDefault();
