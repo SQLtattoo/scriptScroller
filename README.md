@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -77,7 +77,48 @@ Simply download the installer for your platform and run it:
 
 ---
 
-## 👨‍💻 For Developers
+## � How to Use
+
+1. **Download and install** Script Scroller for your platform (see [Download](#-download) section above)
+2. **Launch** the app
+3. **Paste your script** in the text area on the setup screen
+4. **Adjust settings**:
+   - Use the **Speed** slider to set your preferred scrolling speed (or use arrow keys later)
+   - Use the **Font Size** slider to make text larger or smaller
+5. **Click "Start Scrolling"**
+6. **Position the window**:
+   - Resize it to be **narrow and tall** for less eye movement
+   - Place it **right below your webcam** so you naturally look at the camera
+7. **Press Space** to start scrolling - it begins automatically!
+8. **Control playback** with keyboard shortcuts (see below)
+
+💡 **Pro Tip**: Run through your script a few times to find your ideal speed before recording!
+
+## ⌨️ Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| **Space** | Play/Pause scrolling |
+| **S** | Slow down to stop (smooth deceleration) |
+| **↑/↓** | Increase/Decrease speed (±0.3 increments) |
+| **R** | Reset to beginning |
+| **F** | Toggle fullscreen |
+| **Esc** | Show controls / Exit to setup |
+
+**Note:** Arrow keys allow fine-grained speed control from 0.1 (very slow) to 10.0 (very fast).
+
+## 🎥 Pro Tips for Video Recording
+
+- **Window Positioning**: Place it directly below your camera lens so your eyes naturally look toward the camera
+- **Narrow & Tall**: Resize the window to be narrow and tall - this creates less eye movement left-to-right
+- **Font Size**: Larger fonts work better when the window is further from the camera
+- **Speed**: Start slow and gradually increase as you get comfortable
+- **Deceleration**: Press **S** for a smooth slowdown instead of an abrupt pause
+- **Practice**: Run through your script a few times to find your ideal speed
+
+---
+
+## �👨‍💻 For Developers
 
 Want to contribute or run from source? Follow the development setup below.
 
@@ -128,58 +169,9 @@ git push origin v1.0.0
 
 GitHub Actions will automatically build installers for all platforms and create a release with downloadable assets.
 
-## 📖 How to Use
-
-1. **Launch** the app with `npm start`
-2. **Paste** your script in the text area
-3. **Adjust** speed and font size to your preference
-4. **Click** "Start Scrolling"
-5. **Position** the window right below your webcam for natural eye contact
-6. **Resize** the window to make it narrow and tall for better camera alignment
-7. **Press Space** to start scrolling - it begins automatically!
-
 ---
 
-## 📖 How to Use
-
-1. **Download and install** Script Scroller for your platform (see [Download](#-download) section above)
-2. **Launch** the app
-3. **Paste your script** in the text area on the setup screen
-4. **Adjust settings**:
-   - Use the **Speed** slider to set your preferred scrolling speed (or use arrow keys later)
-   - Use the **Font Size** slider to make text larger or smaller
-5. **Click "Start Scrolling"**
-6. **Position the window**:
-   - Resize it to be **narrow and tall** for less eye movement
-   - Place it **right below your webcam** so you naturally look at the camera
-7. **Press Space** to start scrolling - it begins automatically!
-8. **Control playback** with keyboard shortcuts (see below)
-
-💡 **Pro Tip**: Run through your script a few times to find your ideal speed before recording!
-
-## ⌨️ Keyboard Shortcuts
-
-| Key | Action |
-|-----|--------|
-| **Space** | Play/Pause scrolling |
-| **S** | Slow down to stop (smooth deceleration) |
-| **↑/↓** | Increase/Decrease speed (±0.3 increments) |
-| **R** | Reset to beginning |
-| **F** | Toggle fullscreen |
-| **Esc** | Show controls / Exit to setup |
-
-**Note:** Arrow keys allow fine-grained speed control from 0.1 (very slow) to 10.0 (very fast).
-
-## 🎥 Pro Tips for Video Recording
-
-- **Window Positioning**: Place it directly below your camera lens so your eyes naturally look toward the camera
-- **Narrow & Tall**: Resize the window to be narrow and tall - this creates less eye movement left-to-right
-- **Font Size**: Larger fonts work better when the window is further from the camera
-- **Speed**: Start slow and gradually increase as you get comfortable
-- **Deceleration**: Press **S** for a smooth slowdown instead of an abrupt pause
-- **Practice**: Run through your script a few times to find your ideal speed
-
-## 💾 State Persistence
+##  State Persistence
 
 Script Scroller automatically saves your work:
 - **Script content** - Your text is preserved between sessions
